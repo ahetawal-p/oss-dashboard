@@ -8,4 +8,4 @@ gem 'libxml-ruby', '> 0'
 gem 'licensee', '~> 8.7'
 gem 'sequel', '~> 4.6'
 gem 'pg'
-gem 'sqlite3', '~> 1.3'
+
