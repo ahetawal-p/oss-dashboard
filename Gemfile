@@ -8,7 +8,4 @@ gem 'libxml-ruby', '> 0'
 gem 'licensee', '~> 8.7'
 gem 'sequel', '~> 4.6'
 gem 'pg'
-
-group :sqlite do
- 	gem 'sqlite3', '~> 1.3'
-end
+gem 'sqlite3', '~> 1.3'
