@@ -14,12 +14,13 @@ def get_db_handle(config)
   if engine.eql?('postgres')
     require 'pg'
     # TODO ensure that all keys are provided
-    user     = db_config[:user.to_s]
-    password = db_config[:password.to_s]
-    server   = db_config[:server.to_s]
-    port     = db_config[:port.to_s]
-    database = db_config[:database.to_s]
-    return Sequel.connect(sprintf('postgres://%s:%s@%s:%s/%s', user, password, server, port, database))
+    user     = ENV['DB_USERNAME'] ? ENV['DB_ USERNAME'] : db_config[:username.to_s]
+    password = ENV['DB_PASSWORD'] ? ENV['DB_PASSWORD'] : db_config[:password.to_s]
+    server   = ENV['DB_SERVER'] ? ENV['DB_SERVER'] : db_config[:server.to_s]
+    port     = ENV['DB_PORT'] ? ENV['DB_PORT'] : db_config[:port.to_s]
+    database = ENV['DB_DATABSE'] ? ENV['DB_DATABSE'] : db_config[:database.to_s]
+    completeDBUrl = ENV['DATABASE_URL'] ? ENV['DATABASE_URL'] : sprintf('postgres://%s:%s@%s:%s/%s', user, password, server, port, database)
+    return Sequel.connect(completeDBUrl)
   elsif engine.match(/sqlite3?/)
     require 'sqlite3'
     # TODO check that dir is writable

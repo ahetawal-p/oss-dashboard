@@ -1,0 +1,29 @@
+{
+  "name": "oss-dashboard-server",
+  "version": "0.2.5",
+  "description": "oss-dashboard nodejs server",
+  "engines": {
+    "node": "5.9.1"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "ejs": "2.4.1",
+    "express": "4.13.3",
+    "pg": "^4.4.3",
+    "q": "^1.4.1",
+    "serve-favicon": "~2.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "license": "MIT"
+}

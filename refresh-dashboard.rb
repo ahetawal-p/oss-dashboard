@@ -24,6 +24,7 @@ require_relative 'github-pull/pull_source'
 require_relative 'review-repos/reporter_runner'
 require_relative 'generate-dashboard/generate-dashboard-xml'
 require 'optparse'
+require_relative 'generate-webcontent/store-content'
 
 class DashboardContext < Hash
 
@@ -107,14 +108,6 @@ optparse = OptionParser.new do |opts|
   opts.on( '-X', '--xsync', 'Run in experimental sync mode' ) do
     options[:xsync] = true
   end
-  options[:flushonly] = false
-  opts.on( '-F', '--flushonly', 'When in experimental sync mode - only flush' ) do
-    options[:flushonly] = true
-  end
-  options[:queueonly] = false
-  opts.on( '-Q', '--queueonly', 'When in experimental sync mode - only queue' ) do
-    options[:queueonly] = true
-  end
 end
 optparse.parse!
 
@@ -138,12 +131,15 @@ else
 end
 
 Octokit.auto_paginate = true
-client = Octokit::Client.new :access_token => access_token, :accept => 'application/vnd.github.moondragon+json' 
+client = Octokit::Client.new :access_token => access_token, :accept => 'application/vnd.github.moondragon+json'
 
 # Dashboard configuration
 config_file = ARGV[0]
 config = YAML.load(File.read(config_file))
 dashboard_config = config['dashboard']
+# Overriding from env variables
+dashboard_config['logins'] = ENV['LOGINS'] ? ENV['LOGINS'].split(",") : dashboard_config['logins']
+dashboard_config['organizations'] = ENV['ORGANIZATIONS'] ? ENV['ORGANIZATIONS'].split(",") : dashboard_config['organizations']
 data_directory = dashboard_config['data-directory']
 www_directory = dashboard_config['www-directory']
 
@@ -284,11 +280,11 @@ run_list.each do |phase|
         stylesheet = LibXSLT::XSLT::Stylesheet.new( LibXML::XML::Document.file(File.join( File.dirname(__FILE__), 'generate-dashboard', 'style', 'dashboardToHtml.xslt') ) )
         xml_doc = LibXML::XML::Document.file(inputFile)
         html = stylesheet.apply(xml_doc)
-
+        store_html(context, outputFile, html.to_s)
         htmlFile = File.new("#{www_directory}/#{outputFile}.html", 'w')
         htmlFile.write(html)
         htmlFile.close
-        context.feedback.print "."
+        context.feedback.print ".\n"
       end
       context.feedback.print "\n"
 
