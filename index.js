@@ -1,8 +1,9 @@
-/*
+/* Copyright (c) 2017, Salesforce.com, Inc. or its affiliates. All Rights Reserved.
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
+
      http://www.apache.org/licenses/LICENSE-2.0
 
  Unless required by applicable law or agreed to in writing, software
@@ -132,7 +133,7 @@ dbCalls = function (sql, values, singleItem, dontLog) {
 };
 
 app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
+  console.log('oss-dashboard is running on port', app.get('port'));
 });
 
 
