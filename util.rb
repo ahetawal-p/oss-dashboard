@@ -22,7 +22,7 @@ def get_db_handle(config)
     completeDBUrl = ENV['DATABASE_URL'] ? ENV['DATABASE_URL'] : sprintf('postgres://%s:%s@%s:%s/%s', user, password, server, port, database)
     return Sequel.connect(completeDBUrl)
   elsif engine.match(/sqlite3?/)
-    require 'sqlite3'
+    # require 'sqlite3'
     # TODO check that dir is writable
     file = db_config[:filename.to_s]
     dir  = config['data-directory']
