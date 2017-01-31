@@ -15,12 +15,12 @@
     "LOGINS": {
       "description": "Gitgub user logins for dashboard to be created for",
       "value": "",
-      "required": "false"
+      "required": false
     },
     "ORGANIZATIONS": {
       "description": "Gitgub organizations for dashboard to be created for",
       "value": "",
-      "required": "false"
+      "required": false
     }
   },
   "addons": [
