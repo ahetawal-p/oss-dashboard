@@ -13,12 +13,12 @@
       "value": ""
     },
     "LOGINS": {
-      "description": "Gitgub user logins for dashboard to be created for",
+      "description": "Github user logins for dashboards to be created (Can be a comma separated list)",
       "value": "",
       "required": false
     },
     "ORGANIZATIONS": {
-      "description": "Gitgub organizations for dashboard to be created for",
+      "description": "Github organizations for dashboard to be created (Can be a comma separated list)",
       "value": "",
       "required": false
     }
