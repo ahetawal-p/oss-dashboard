@@ -1,0 +1,39 @@
+{
+  "name": "Oss Dashboard",
+  "description": "A dashboard for viewing many GitHub organizations, and/or users, at once.",
+  "keywords": [
+    "productivity",
+    "github",
+    "dashboard"
+  ],
+  "repository": "https://github.com/ahetawal-p/oss-dashboard/tree/oss-dashboard-heroku",
+  "env": {
+    "GH_ACCESS_TOKEN": {
+      "description": "GitHub personal access token",
+      "generator": "secret"
+    },
+    "LOGINS": {
+      "description": "Gitgub user logins for dashboard to be created for",
+      "value": ""
+    },
+    "ORGANIZATIONS": {
+      "description": "Gitgub organizations for dashboard to be created for",
+      "value": ""
+    }
+  },
+  "addons": [
+    "heroku-postgresql:hobby-dev",
+    "scheduler:standard"
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/rcaught/heroku-buildpack-cmake.git"
+    },
+    {
+      "url": "heroku/ruby"
+    },
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
