@@ -1,3 +1,26 @@
+# oss-dashboard on Heroku
+
+This is a fork of oss-dashboard which can be deployed on Heroku and shared accross teams and users.
+Also provides automatic syncing of the github stats when used with Heroku tools.
+Use the sample button for deploying your own instance of this dashboard.
+
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/ahetawal-p/oss-dashboard/tree/oss-dashboard-heroku)
+
+
+## Some useful heroku commands 
+`heroku run:detached rake generateDashboard` for triggering dashboard generation from CLI in `detached` mode
+
+`heroku run rake generateDashboard` for triggering dashboard generation from CLI in `attached` mode
+
+`heroku pg:psql` for accessing postgres on heroku
+
+`heroku run bash`for accessing bash console on the heroku dyno
+
+
+
+# Details
+
 # Amazon Open Source Program GitHub Dashboard
 A dashboard for viewing many GitHub organizations, and/or users, at once. 
 
