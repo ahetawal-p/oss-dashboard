@@ -10,15 +10,17 @@
   "env": {
     "GH_ACCESS_TOKEN": {
       "description": "GitHub personal access token",
-      "generator": "secret"
+      "value": ""
     },
     "LOGINS": {
       "description": "Gitgub user logins for dashboard to be created for",
-      "value": ""
+      "value": "",
+      "required": "false"
     },
     "ORGANIZATIONS": {
       "description": "Gitgub organizations for dashboard to be created for",
-      "value": ""
+      "value": "",
+      "required": "false"
     }
   },
   "addons": [
