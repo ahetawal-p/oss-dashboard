@@ -95,7 +95,6 @@ def getLatestForOrgRepos(context, issue_db, org, repos)
   repos.each do |repo_obj|
 
     # TODO-AH remove this
-    puts repo_obj.name
     if repo_obj.name == 'zeroclickinfo-goodies' || repo_obj.name == 'zeroclickinfo-spice'
       puts 'continueing...'
       next
@@ -153,7 +152,6 @@ def getLatestIssueComments(context, issue_db, org, repos)
   repos.each do |repo_obj|
 
     # TODO AH remove this
-    puts repo_obj.name
     if repo_obj.name == 'zeroclickinfo-goodies' || repo_obj.name == 'zeroclickinfo-spice'
       puts 'continueing...'
       next
