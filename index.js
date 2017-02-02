@@ -23,9 +23,6 @@ var favicon = require('serve-favicon');
 var path = require('path');
 
 var databaseURL = process.env.DATABASE_URL || "postgres://localhost:5432/oss-dashboard";
-console.log(databaseURL)
-databaseURL = databaseURL + "?ssl=true"
-console.log(databaseURL)
 
 app.set('port', (process.env.PORT || 5000));
 
