@@ -21,6 +21,10 @@
       "description": "Github organizations for dashboard to be created (Can be a comma separated list)",
       "value": "",
       "required": false
+    },
+    "PGSSLMODE": {
+      "description": "Config used for postgres being accessed on ssl",
+      "value": "require"
     }
   },
   "addons": [
