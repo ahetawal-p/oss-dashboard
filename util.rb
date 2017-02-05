@@ -15,7 +15,6 @@
 
 require 'sequel'
 
-# +config+ Hash of data needed to connect to database
 # returns a Sequel handle to specified database
 def get_db_handle(config)
   db_config = config[:database.to_s]
@@ -31,15 +30,6 @@ def get_db_handle(config)
     database = ENV['DB_DATABSE'] ? ENV['DB_DATABSE'] : db_config[:database.to_s]
     completeDBUrl = ENV['DATABASE_URL'] ? ENV['DATABASE_URL'] : sprintf('postgres://%s:%s@%s:%s/%s', user, password, server, port, database)
     return Sequel.connect(completeDBUrl)
-  elsif engine.match(/sqlite3?/)
-    # require 'sqlite3'
-    # TODO check that dir is writable
-    file = db_config[:filename.to_s]
-    dir  = config['data-directory']
-
-    Dir.mkdir(dir) unless File.exist?(dir)
-
-    return Sequel.connect(sprintf('sqlite://%s/%s', dir, file))
   else
     raise StandardError.new(sprintf('unsupported database engine[%s]', config[:engine]))
   end
@@ -55,16 +45,17 @@ def db_exists?(config)
       tables = dbh.tables
       return ! tables.empty?
     rescue => e # TODO need to be more specific about which exception we're catching
+      puts "Error during db check: #{$!}"
       init_postgres_db(config)
       return false
     end
-
-  elsif engine.eql?('sqlite3')
-    File.exist?(db_config[:filename.to_s])
   end
-
 end
 
+# should not be needed in production server, usually for local running
 def init_postgres_db(config)
-  `createdb --owner postgres oss-dashboard` # TODO pull this out of configuration
+  db_config = config[:database.to_s]
+  database = ENV['DB_DATABSE'] ? ENV['DB_DATABSE'] : db_config[:database.to_s]
+  puts "Creating db #{database}..."
+  `createdb --owner postgres #{database}`
 end

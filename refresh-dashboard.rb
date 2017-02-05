@@ -137,6 +137,7 @@ client = Octokit::Client.new :access_token => access_token, :accept => 'applicat
 config_file = ARGV[0]
 config = YAML.load(File.read(config_file))
 dashboard_config = config['dashboard']
+
 # Overriding from env variables
 dashboard_config['logins'] = ENV['LOGINS'] ? ENV['LOGINS'].split(",") : dashboard_config['logins']
 dashboard_config['organizations'] = ENV['ORGANIZATIONS'] ? ENV['ORGANIZATIONS'].split(",") : dashboard_config['organizations']
@@ -205,7 +206,7 @@ if(context.github_com?)
 else
   context[:START_RATE_LIMIT]='n/a'
 end
- 
+
 # State to make output cleaner
 printed_gh_sync=false
 printed_gen_dash=false
