@@ -23,7 +23,7 @@ def get_db_handle(config)
   if engine.eql?('postgres')
     require 'pg'
     # TODO ensure that all keys are provided
-    user     = ENV['DB_USERNAME'] ? ENV['DB_ USERNAME'] : db_config[:username.to_s]
+    user     = ENV['DB_USERNAME'] ? ENV['DB_USERNAME'] : db_config[:username.to_s]
     password = ENV['DB_PASSWORD'] ? ENV['DB_PASSWORD'] : db_config[:password.to_s]
     server   = ENV['DB_SERVER'] ? ENV['DB_SERVER'] : db_config[:server.to_s]
     port     = ENV['DB_PORT'] ? ENV['DB_PORT'] : db_config[:port.to_s]
